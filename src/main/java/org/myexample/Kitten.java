@@ -1,5 +1,7 @@
 package org.myexample;
 
+import java.util.Objects;
+
 public class Kitten {
 
     private Gender gender;
@@ -27,5 +29,17 @@ public class Kitten {
 
     public Gender getGender() {
         return gender;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Kitten kitten)) return false;
+        return age == kitten.age && gender == kitten.gender && Objects.equals(name, kitten.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gender, name, age);
     }
 }
