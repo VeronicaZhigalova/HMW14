@@ -34,12 +34,22 @@ public class Kitten {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Kitten kitten)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Kitten kitten = (Kitten) o;
         return age == kitten.age && gender == kitten.gender && Objects.equals(name, kitten.name);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(gender, name, age);
+    }
+
+    @Override
+    public String toString() {
+        return "Kitten{" +
+                "gender=" + gender +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
