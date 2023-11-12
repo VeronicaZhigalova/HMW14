@@ -134,7 +134,20 @@ public class KittenStatistics {
      */
     public List<Kitten> kittensSortedByAgeYoungerFirst() {
         List<Kitten> kittensSortedByAgeYoungerFirst = new ArrayList<>(kittens);
-        kittensSortedByAgeYoungerFirst.sort(Comparator.comparingInt(Kitten::getAge));
+        int n = kittensSortedByAgeYoungerFirst.size();
+        Kitten temp;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (kittensSortedByAgeYoungerFirst.get(j).getAge() > kittensSortedByAgeYoungerFirst.get(j + 1).getAge()) {
+                    {
+                        temp = kittensSortedByAgeYoungerFirst.get(j);
+                        kittensSortedByAgeYoungerFirst.set(j, kittensSortedByAgeYoungerFirst.get(j + 1));
+                        kittensSortedByAgeYoungerFirst.set(j + 1, temp);
+                    }
+                }
+            }
+
+        }
         return kittensSortedByAgeYoungerFirst;
     }
 
@@ -146,7 +159,22 @@ public class KittenStatistics {
      */
     public List<Kitten> kittensSortedByAgeOlderFirst() {
         List<Kitten> kittensSortedByAgeOlderFirst = new ArrayList<>(kittens);
-        kittensSortedByAgeOlderFirst.sort(Comparator.comparingInt(Kitten::getAge).reversed());
+        int n = kittensSortedByAgeOlderFirst.size();
+        Kitten temp;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (kittensSortedByAgeOlderFirst.get(j).getAge() < kittensSortedByAgeOlderFirst.get(j + 1).getAge()) {
+                    {
+                        temp = kittensSortedByAgeOlderFirst.get(j);
+                        kittensSortedByAgeOlderFirst.set(j, kittensSortedByAgeOlderFirst.get(j + 1));
+                        kittensSortedByAgeOlderFirst.set(j + 1, temp);
+                    }
+                }
+            }
+        }
         return kittensSortedByAgeOlderFirst;
     }
 }
+
+
+

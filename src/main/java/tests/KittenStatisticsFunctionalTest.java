@@ -21,6 +21,7 @@ public class KittenStatisticsFunctionalTest {
 
     List<Kitten> kittenList = new ArrayList<>(of(
             new Kitten("Micky", Kitten.Gender.MALE, 2),
+            new Kitten("Mell", Kitten.Gender.MALE, 2),
             new Kitten("Jessi", FEMALE, 5),
             new Kitten("Harry", Kitten.Gender.MALE, 7),
             new Kitten("Moon", FEMALE, 9),
@@ -34,7 +35,7 @@ public class KittenStatisticsFunctionalTest {
 
     @Test
     void testFindKittensAverageAge() {
-        assertEquals(6.8, kittenStatisticsFunctional.findKittensAverageAge());
+        assertEquals(6.0, kittenStatisticsFunctional.findKittensAverageAge());
 
     }
 
@@ -47,7 +48,8 @@ public class KittenStatisticsFunctionalTest {
 
     @Test
     void testFindYoungestKittens() {
-        List<Kitten> youngestKitten = new ArrayList<>(of(new Kitten("Micky", Kitten.Gender.MALE, 2)));
+        List<Kitten> youngestKitten = new ArrayList<>(of(new Kitten("Micky", Kitten.Gender.MALE, 2),
+                new Kitten("Mell", Kitten.Gender.MALE, 2)));
         assertEquals(youngestKitten, kittenStatisticsFunctional.findYoungestKittens());
     }
 
@@ -61,7 +63,9 @@ public class KittenStatisticsFunctionalTest {
 
     @Test
     void testFindKittensBetweenAges() {
-        List<Kitten> result = new ArrayList<>(List.of(new Kitten("Micky", MALE, 2), new Kitten("Jessi", FEMALE, 5)));
+        List<Kitten> result = new ArrayList<>(List.of(new Kitten("Micky", Kitten.Gender.MALE, 2),
+                new Kitten("Mell", Kitten.Gender.MALE, 2),
+                new Kitten("Jessi", FEMALE, 5)));
         assertEquals(kittenStatisticsFunctional.findKittensBetweenAges(1, 5), result);
 
     }
@@ -77,6 +81,7 @@ public class KittenStatisticsFunctionalTest {
     void testKittensSortedByAgeYoungerFirst() {
         List<Kitten> expected = new ArrayList<>(List.of(
                 new Kitten("Micky", Kitten.Gender.MALE, 2),
+                new Kitten("Mell", Kitten.Gender.MALE, 2),
                 new Kitten("Jessi", FEMALE, 5),
                 new Kitten("Harry", Kitten.Gender.MALE, 7),
                 new Kitten("Moon", FEMALE, 9),
@@ -92,7 +97,8 @@ public class KittenStatisticsFunctionalTest {
                 new Kitten("Moon", FEMALE, 9),
                 new Kitten("Harry", Kitten.Gender.MALE, 7),
                 new Kitten("Jessi", FEMALE, 5),
-                new Kitten("Micky", Kitten.Gender.MALE, 2)));
+                new Kitten("Micky", Kitten.Gender.MALE, 2),
+                new Kitten("Mell", Kitten.Gender.MALE, 2)));
         assertEquals(expected, kittenStatisticsFunctional.kittensSortedByAgeOlderFirst());
     }
 }

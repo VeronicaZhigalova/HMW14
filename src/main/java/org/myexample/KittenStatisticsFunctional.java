@@ -1,8 +1,6 @@
 package org.myexample;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class KittenStatisticsFunctional {
@@ -49,12 +47,18 @@ public class KittenStatisticsFunctional {
      * @return Список самых младших котят.
      */
     public List<Kitten> findYoungestKittens() {
-        return kittens.stream()
-                .min(Comparator.comparing(Kitten::getAge))
-                .stream()
-                .toList();
+        OptionalInt minAge = kittens.stream()
+                .mapToInt(Kitten::getAge)
+                .min();
+
+        return minAge.isPresent() ?
+                kittens.stream()
+                        .filter(kitten -> kitten.getAge() == minAge.getAsInt())
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
 
     }
+
 
     /**
      * Находит котят по заданному полу.
